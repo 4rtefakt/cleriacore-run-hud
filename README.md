@@ -16,7 +16,7 @@ The mod only watches. It changes no number of the game.
 
 ## Install
 
-1. Download `4rtefakt.runhud-1.0.0.cleriamod` from the [releases](../../releases).
+1. Download `4rtefakt.runhud-1.0.1.cleriamod` from the [releases](../../releases).
 2. Double-click it (or use F1 > Mods > *Install a mod file...*).
 3. Turn **Run HUD** on in F1 > Mods and restart CleriaCore.
 
@@ -50,9 +50,9 @@ end)
 
 ## Tests
 
-`python .dev/run.py` runs three cases through CleriaCore's headless harness: a monster is killed and the player is
-hit (the panel's numbers must match the engine's: 90 dealt, 22 taken, best hit 30), a death and a Retry (the death
-stays counted), and a save and load followed by a door (the totals come back, the room clock restarts).
+`python .dev/run.py` runs four cases through CleriaCore's headless harness: a monster is killed and the player is
+hit (the panel's numbers must match the engine's: 90 dealt, 22 taken, best hit 30), a death and a Retry, in a room where the game retries in place and in one where it reloads (the death
+stays counted both times), and a save and load followed by a door (the totals come back, the room clock restarts).
 
 Not covered: the recap card needs a final boss kill, which no test plays; it is checked by reading only.
 
@@ -62,11 +62,17 @@ Each one is a small Lua mod that shows a different part of the mod API:
 
 - [Mutators](https://github.com/4rtefakt/cleriacore-mutators): challenge rules: Glass Cannon, Berserker, One Hit, Vampire, Midas, Famine, Permadeath, a level cap
 - [Solo Randomizer](https://github.com/4rtefakt/cleriacore-solo-randomizer): the tower's chests shuffled from a seed, always beatable, no server
+- [Daily Challenge](https://github.com/4rtefakt/cleriacore-daily-challenge): the date shuffles the chests and picks two rules, the same for everyone
 - [Roguelite Perks](https://github.com/4rtefakt/cleriacore-roguelite-perks): every boss beaten lets you choose one of three random perks
-- [Crowd Control](https://github.com/4rtefakt/cleriacore-crowd-control): Twitch chat votes on what happens to you
+- [New Game+](https://github.com/4rtefakt/cleriacore-new-game-plus): start again with part of your level, SP and weapon against a harder tower
+- [Level Sync](https://github.com/4rtefakt/cleriacore-level-sync): monsters fight as if they were near your level
 - [Adaptive Difficulty](https://github.com/4rtefakt/cleriacore-adaptive-difficulty): enemies hit softer after each death, and return to normal as you progress
-- [LiveSplit Autosplitter](https://github.com/4rtefakt/cleriacore-livesplit): starts and splits LiveSplit over its WebSocket server
+- [Achievements](https://github.com/4rtefakt/cleriacore-achievements): thirty achievements kept across all your saves
 - [Bestiary+](https://github.com/4rtefakt/cleriacore-bestiary): a per-save hunting log of every monster killed
+- [Autosave+](https://github.com/4rtefakt/cleriacore-autosave): rolling autosaves on a timer, after bosses and in new zones
+- [Debug Menu](https://github.com/4rtefakt/cleriacore-debug-menu): change level, SP, items, gear, skills, blessings, warps and flags
+- [Crowd Control](https://github.com/4rtefakt/cleriacore-crowd-control): Twitch chat votes on what happens to you
+- [LiveSplit Autosplitter](https://github.com/4rtefakt/cleriacore-livesplit): starts and splits LiveSplit over its WebSocket server
 - [Archipelago](https://github.com/4rtefakt/ys-origin-cleriacore-ap): the multiworld randomizer client, the biggest one
 
 ## About

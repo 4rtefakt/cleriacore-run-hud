@@ -23,8 +23,13 @@ local function restore()
     if type(t) == "table" then for k in pairs(run) do if type(t[k]) == "number" then run[k] = t[k] end end end
     window = {}
 end
-cleria.events.on("new_game", function() restore() run.rooms = 1 end)    -- the first room is entered before new_game
-cleria.events.on("load", restore)
+-- Continuing after a death can reload the save's storage as it was before the death: the count is carried over.
+local carry = nil
+cleria.events.on("new_game", function() carry = nil restore() run.rooms = 1 end)    -- the first room is entered before new_game
+cleria.events.on("load", function()
+    restore()
+    if carry then run.deaths = math.max(run.deaths, carry) carry = nil store() end
+end)
 
 cleria.events.on("room_enter", function(e)
     room_ticks = 0
@@ -42,7 +47,7 @@ cleria.events.on("tick", function()
     if run.ticks % 60 == 0 then store() end
 end)
 cleria.events.on("enemy_killed", function() run.kills = run.kills + 1 store() end)
-cleria.events.on("death", function() run.deaths = run.deaths + 1 store() end)
+cleria.events.on("death", function() run.deaths = run.deaths + 1 carry = run.deaths store() end)
 
 local function clock(ticks)
     local s = ticks // 60
